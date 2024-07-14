@@ -11,6 +11,27 @@ html {
   font-family: "Inter", sans-serif;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  appearance: textfield;
+}
+
 .container {
   position: relative;
   height: 100dvh;
@@ -18,6 +39,7 @@ html {
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
+  overflow-x: scroll;
 }
 
 .container__above {
@@ -62,12 +84,13 @@ html {
   display: block;
 }
 
+.form__search,
 .form {
   display: flex;
   gap: 14px;
 }
 
-input {
+input[type=number] {
   height: 50px;
   width: 320px;
   padding: 6px 18px;
@@ -94,7 +117,8 @@ option:not(:checked) {
   color: black;
 }
 
-button {
+input[type=submit] {
+  display: block;
   border: none;
   outline: none;
   height: 50px;
@@ -136,7 +160,16 @@ td {
   padding: 12px 20px;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 900px) {
+  .container {
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  .form {
+    display: unset;
+  }
+
   .table__large {
     display: none;
   }
@@ -145,4 +178,18 @@ td {
     display: block;
   }
 
+  th,
+  td {
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  input[type=submit] {
+    width: 100%;
+    margin-top: 16px;
+  }
 }

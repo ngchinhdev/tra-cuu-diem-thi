@@ -1,43 +1,65 @@
+import { useGlobalState } from "../context/GlobalStateContext";
+
 function TableResult() {
+  const { state } = useGlobalState();
+
+  console.log(state);
+
   return (
     <div className="table__result">
       <h3>KẾT QUẢ TRA CỨU</h3>
       <table className="table__mobile">
-        <tr>
-          <td>SBD</td>
-          <td colSpan={2}>42009124</td>
-        </tr>
-        <tr>
-          <td>Cụm thi</td>
-          <td colSpan={2}>42 - Sở GD Lâm Đồng</td>
-        </tr>
-        <tr>
-          <td colSpan={2}>Toán</td>
-        </tr>
-        <tr>
-          <td colSpan={2}>Ngữ văn</td>
-        </tr>
-        <tr>
-          <td colSpan={2}>Ngoại ngữ</td>
-        </tr>
-        <tr>
-          <td rowSpan={6}>Tổ hợp</td>
-        </tr>
-        <tr>
-          <td rowSpan={3}>KHTN</td>
-          <td>Lý</td>
-        </tr>
-        <tr>
-          <td rowSpan={3}>KHXH</td>
-          <td>Hóa</td>
-        </tr>
-        <tr>
-          <td rowSpan={3}>KHXH</td>
-          <td>Sinh</td>
-        </tr>
-        <tr>
-          <td rowSpan={3}>KHXH</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td colSpan={2}>SBD</td>
+            <td colSpan={2}>{state.score?.studentID}</td>
+          </tr>
+          <tr>
+            <td colSpan={2}>Cụm thi</td>
+            <td colSpan={2}>{state.score?.cluster}</td>
+          </tr>
+          <tr>
+            <td colSpan={3}>Toán</td>
+            <td>{state.score?.subjects?.math}</td>
+          </tr>
+          <tr>
+            <td colSpan={3}>Ngữ văn</td>
+            <td>{state.score?.subjects?.literature}</td>
+          </tr>
+          <tr>
+            <td colSpan={3}>Ngoại ngữ</td>
+            <td>{state.score?.subjects?.foreignLanguage}</td>
+          </tr>
+          <tr>
+            <td rowSpan={7}>Tổ hợp</td>
+          </tr>
+          <tr>
+            <td rowSpan={3}>KHTN</td>
+            <td>Lý</td>
+            <td>{state.score?.subjects?.physics}</td>
+          </tr>
+          <tr>
+            <td>Hóa</td>
+            <td>{state.score?.subjects?.chemistry}</td>
+          </tr>
+          <tr>
+            <td>Sinh</td>
+            <td>{state.score?.subjects?.biology}</td>
+          </tr>
+          <tr>
+            <td rowSpan={3}>KHXH</td>
+            <td>Sử</td>
+            <td>{state.score?.subjects?.history}</td>
+          </tr>
+          <tr>
+            <td>Địa</td>
+            <td>{state.score?.subjects?.geography}</td>
+          </tr>
+          <tr>
+            <td>GDCD</td>
+            <td>{state.score?.subjects?.civicEducation}</td>
+          </tr>
+        </tbody>
       </table>
       <table className="table__large">
         <thead>
@@ -64,17 +86,17 @@ function TableResult() {
         </thead>
         <tbody>
           <tr>
-            <th>hello</th>
-            <th>hello</th>
-            <th>hello</th>
-            <th>hello</th>
-            <th>hello</th>
-            <th>hello</th>
-            <th>hello</th>
-            <th>hello</th>
-            <th>hello</th>
-            <th>hello</th>
-            <th>hello</th>
+            <th>{state.score?.studentID}</th>
+            <th>{state.score?.cluster}</th>
+            <th>{state.score?.subjects?.math}</th>
+            <th>{state.score?.subjects?.literature}</th>
+            <th>{state.score?.subjects?.foreignLanguage}</th>
+            <th>{state.score?.subjects?.physics}</th>
+            <th>{state.score?.subjects?.chemistry}</th>
+            <th>{state.score?.subjects?.biology}</th>
+            <th>{state.score?.subjects?.history}</th>
+            <th>{state.score?.subjects?.geography}</th>
+            <th>{state.score?.subjects?.civicEducation}</th>
           </tr>
         </tbody>
       </table>
