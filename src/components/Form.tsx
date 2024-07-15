@@ -7,18 +7,36 @@ function Form() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!state.year || !state.studentID) return;
+    if (!state.year) {
+      alert("Vui lòng chọn năm");
+      return;
+    }
 
+    if (!state.studentID) {
+      alert("Vui lòng nhập SBD");
+      return;
+    }
+
+    dispatch({ type: "updateIsLoading", payload: true });
     try {
       const res = await fetch(
         `http://localhost:3500/api/scores?year=${state.year}&studentID=${state.studentID}`
       );
 
       const scoreData = await res.json();
-      console.log(scoreData);
+
+      if (!scoreData.score) {
+        alert("Không tìm thấy kết quả");
+        dispatch({ type: "updateScore", payload: {} });
+        dispatch({ type: "updateIsLoading", payload: false });
+        return;
+      }
+
       dispatch({ type: "updateScore", payload: scoreData.score });
     } catch (error) {
       console.error(error);
+    } finally {
+      dispatch({ type: "updateIsLoading", payload: false });
     }
   };
 
@@ -52,7 +70,11 @@ function Form() {
           </select>
         </div>
       </div>
-      <input type="submit" value="Tra cứu" />
+      <input
+        type="submit"
+        value={state.isLoading ? "Loading..." : "Tra cứu"}
+        disabled={state.isLoading}
+      />
     </form>
   );
 }

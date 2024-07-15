@@ -11,6 +11,7 @@ const initialState: IState = {
   studentID: 0,
   year: 0,
   score: {},
+  isLoading: false,
 };
 
 const reducer = (state: IState, action: TAction): IState => {
@@ -21,6 +22,8 @@ const reducer = (state: IState, action: TAction): IState => {
       return { ...state, year: action.payload };
     case "updateScore":
       return { ...state, score: action.payload };
+    case "updateIsLoading":
+      return { ...state, isLoading: action.payload };
     default:
       return state;
   }

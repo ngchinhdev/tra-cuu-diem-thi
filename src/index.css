@@ -103,12 +103,12 @@ input[type=number] {
 select {
   border: none;
   outline: none;
-  color: white;
+  color: black;
   padding: 0 12px;
   cursor: pointer;
   height: 50px;
   font-size: 18px;
-  background: #0067e2;
+  /* background: #0067e2; */
   border-radius: 6px;
 }
 

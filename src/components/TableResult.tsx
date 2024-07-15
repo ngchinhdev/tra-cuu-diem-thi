@@ -3,8 +3,6 @@ import { useGlobalState } from "../context/GlobalStateContext";
 function TableResult() {
   const { state } = useGlobalState();
 
-  console.log(state);
-
   return (
     <div className="table__result">
       <h3>KẾT QUẢ TRA CỨU</h3>

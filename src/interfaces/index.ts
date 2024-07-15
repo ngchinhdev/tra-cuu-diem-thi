@@ -18,10 +18,12 @@ export interface IScore {
 export interface IState {
     studentID: number;
     year: number;
-    score?: Partial<IScore>;
+    score: IScore | Record<string, never>;
+    isLoading: boolean;
 }
 
 export type TAction =
     | { type: 'updateStudentID'; payload: number; }
     | { type: 'updateYear'; payload: number; }
-    | { type: 'updateScore'; payload: IScore; };
+    | { type: 'updateIsLoading'; payload: boolean; }
+    | { type: 'updateScore'; payload: IScore | Record<string, never>; };
